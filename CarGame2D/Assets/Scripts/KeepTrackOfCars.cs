@@ -73,7 +73,7 @@ public class KeepTrackOfCars : MonoBehaviour
         currentStageIndex = LevelManager.Instance.LevelStageIndex;
         var _tempCar = LevelManager.Instance.Level.cars[currentStageIndex].carGO;
 
-        if (_tempCar.name == name)
+        if (_tempCar.name == name && currentStageIndex != 7)
         {
             keepTrack = true;
             return true;

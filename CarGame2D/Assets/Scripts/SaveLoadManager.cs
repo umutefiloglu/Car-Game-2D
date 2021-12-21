@@ -39,15 +39,20 @@ public class SaveLoadManager : MonoBehaviour
                 LevelManager.Instance.CurrentLevelIndex = PlayerPrefs.GetInt("currentLevelIndex");
                 if (LevelManager.Instance.CurrentLevelIndex != SceneManager.GetActiveScene().buildIndex)
                 {
-                    if (LevelManager.Instance.CurrentLevelIndex != SceneManager.sceneCountInBuildSettings)
+                    if (LevelManager.Instance.CurrentLevelIndex < SceneManager.sceneCountInBuildSettings)
                     {
                         SceneManager.LoadScene(LevelManager.Instance.CurrentLevelIndex);
+                    }
+                    else if (SceneManager.GetActiveScene().buildIndex != SceneManager.sceneCountInBuildSettings - 1)
+                    {
+                        SceneManager.LoadScene(SceneManager.sceneCountInBuildSettings - 1);
                     }
                 }
             }
             else
             {
                 LevelManager.Instance.CurrentLevelIndex = 0;
+                SceneManager.LoadScene(LevelManager.Instance.CurrentLevelIndex);
             }
 
             alreadySaved = false;
